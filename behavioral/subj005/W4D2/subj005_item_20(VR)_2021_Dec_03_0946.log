@@ -1,0 +1,556 @@
+7.2838 	EXP 	Created window1 = Window(allowGUI=False, allowStencil=False, args=UNKNOWN, autoLog=True, bitsMode=UNKNOWN, blendMode='avg', color=array([0., 0., 0.]), colorSpace='rgb', fullscr=<method-wrapper '__getattribute__' of attributeSetter object at 0x110514e10>, gamma=None, gammaErrorPolicy='raise', kwargs=UNKNOWN, lms=UNKNOWN, monitor=<psychopy.monitors.calibTools.Monitor object at 0x1107425c0>, multiSample=False, name='window1', numSamples=2, pos=[0.0, 0.0], screen=0, size=array([1920, 1080]), stereo=False, units='height', useFBO=True, useRetina=False, viewOri=0.0, viewPos=None, viewScale=None, waitBlanking=True, winType='pyglet')
+7.2838 	EXP 	window1: recordFrameIntervals = False
+7.4503 	EXP 	window1: recordFrameIntervals = True
+7.6341 	EXP 	window1: recordFrameIntervals = False
+8.1564 	EXP 	Created text = TextStim(__class__=<class 'psychopy.visual.text.TextStim'>, alignHoriz='center', alignVert='center', antialias=True, autoLog=True, bold=False, color='white', colorSpace='named', contrast=1.0, depth=0.0, flipHoriz=False, flipVert=False, font='Arial', fontFiles=[], height=0.03, italic=False, languageStyle='LTR', name='text', opacity=1.0, ori=0, pos=array([0., 0.]), rgb=array([255., 255., 255.]), text=str(...), units='height', win=Window(...), wrapWidth=1)
+8.2073 	EXP 	Created text_2 = TextStim(__class__=<class 'psychopy.visual.text.TextStim'>, alignHoriz='center', alignVert='center', antialias=True, autoLog=True, bold=False, color='white', colorSpace='named', contrast=1.0, depth=0.0, flipHoriz=False, flipVert=False, font='Arial', fontFiles=[], height=0.1, italic=False, languageStyle='LTR', name='text_2', opacity=1.0, ori=0, pos=array([0., 0.]), rgb=array([255., 255., 255.]), text='Waiting for the scanner\n', units='height', win=Window(...), wrapWidth=1)
+8.2559 	EXP 	Created text_3 = TextStim(__class__=<class 'psychopy.visual.text.TextStim'>, alignHoriz='center', alignVert='center', antialias=True, autoLog=True, bold=False, color='white', colorSpace='named', contrast=1.0, depth=0.0, flipHoriz=False, flipVert=False, font='Arial', fontFiles=[], height=0.1, italic=False, languageStyle='LTR', name='text_3', opacity=1.0, ori=0, pos=array([0., 0.]), rgb=array([255., 255., 255.]), text='default text', units='height', win=Window(...), wrapWidth=1)
+8.2584 	EXP 	Created text_4 = TextStim(__class__=<class 'psychopy.visual.text.TextStim'>, alignHoriz='center', alignVert='center', antialias=True, autoLog=True, bold=False, color='white', colorSpace='named', contrast=1.0, depth=-1.0, flipHoriz=False, flipVert=False, font='Arial', fontFiles=[], height=0.1, italic=False, languageStyle='LTR', name='text_4', opacity=1.0, ori=0, pos=array([0., 0.]), rgb=array([255., 255., 255.]), text='+', units='height', win=Window(...), wrapWidth=1)
+8.2721 	EXP 	Created text_5 = TextStim(__class__=<class 'psychopy.visual.text.TextStim'>, alignHoriz='center', alignVert='center', antialias=True, autoLog=True, bold=False, color='white', colorSpace='named', contrast=1.0, depth=-2.0, flipHoriz=False, flipVert=False, font='Arial', fontFiles=[], height=0.02, italic=False, languageStyle='LTR', name='text_5', opacity=1.0, ori=0, pos=array([ 0. , -0.3]), rgb=array([255., 255., 255.]), text=str(...), units='height', win=Window(...), wrapWidth=1)
+8.3213 	EXP 	Created text_6 = TextStim(__class__=<class 'psychopy.visual.text.TextStim'>, alignHoriz='center', alignVert='center', antialias=True, autoLog=True, bold=False, color='white', colorSpace='named', contrast=1.0, depth=0.0, flipHoriz=False, flipVert=False, font='Arial', fontFiles=[], height=0.1, italic=False, languageStyle='LTR', name='text_6', opacity=1.0, ori=0, pos=array([0., 0.]), rgb=array([255., 255., 255.]), text="That's the end of this task\n", units='height', win=Window(...), wrapWidth=1)
+8.3281 	EXP 	text: autoDraw = True
+15.0391 	DATA 	Keypress: 1
+15.0503 	EXP 	text: autoDraw = False
+15.0503 	EXP 	text_2: autoDraw = True
+36.5828 	EXP 	Imported wl20.csv as conditions, 20 conditions, 1 params
+36.5831 	EXP 	Created sequence: random, trialTypes=20, nReps=1, seed=None
+36.5833 	EXP 	New trial (rep=0, index=0): OrderedDict([('Word', 'hair')])
+36.5880 	DATA 	Keypress: 5
+36.5894 	DATA 	Keypress: equal
+36.5939 	EXP 	text_2: autoDraw = False
+36.5939 	EXP 	text_3: text = 'hair'
+36.5939 	EXP 	text_4: autoDraw = True
+37.5954 	EXP 	text_3: autoDraw = True
+37.6007 	EXP 	text_4: autoDraw = False
+38.0971 	DATA 	Keypress: 5
+38.0987 	DATA 	Keypress: equal
+39.5802 	DATA 	Keypress: equal
+39.5817 	DATA 	Keypress: 5
+41.0876 	DATA 	Keypress: equal
+41.0898 	DATA 	Keypress: 5
+42.5847 	EXP 	text_5: autoDraw = True
+42.5900 	DATA 	Keypress: equal
+42.5922 	DATA 	Keypress: 5
+43.3143 	DATA 	Keypress: 2
+44.0819 	DATA 	Keypress: equal
+44.0837 	DATA 	Keypress: 5
+45.5974 	DATA 	Keypress: 5
+45.5989 	DATA 	Keypress: equal
+47.0883 	DATA 	Keypress: equal
+47.0903 	DATA 	Keypress: 5
+47.5808 	EXP 	New trial (rep=0, index=1): OrderedDict([('Word', 'microscope')])
+47.5947 	EXP 	text_3: autoDraw = False
+47.5947 	EXP 	text_5: autoDraw = False
+47.5947 	EXP 	text_3: autoDraw = False
+47.5947 	EXP 	text_4: autoDraw = False
+47.5947 	EXP 	text_5: autoDraw = False
+47.5947 	EXP 	text_3: text = 'microscope'
+47.5947 	EXP 	text_4: autoDraw = True
+48.5828 	DATA 	Keypress: equal
+48.5846 	DATA 	Keypress: 5
+48.5944 	EXP 	text_3: autoDraw = True
+48.5944 	EXP 	text_4: autoDraw = False
+50.0818 	DATA 	Keypress: equal
+50.0836 	DATA 	Keypress: 5
+51.6190 	DATA 	Keypress: equal
+51.6204 	DATA 	Keypress: 5
+53.0805 	DATA 	Keypress: 5
+53.0819 	DATA 	Keypress: equal
+53.5950 	EXP 	text_5: autoDraw = True
+54.5812 	DATA 	Keypress: 5
+54.5828 	DATA 	Keypress: equal
+54.7665 	DATA 	Keypress: 2
+56.0817 	DATA 	Keypress: equal
+56.0833 	DATA 	Keypress: 5
+57.5811 	DATA 	Keypress: equal
+57.5825 	DATA 	Keypress: 5
+58.5970 	EXP 	New trial (rep=0, index=2): OrderedDict([('Word', 'ladybug')])
+58.6113 	EXP 	text_3: autoDraw = False
+58.6113 	EXP 	text_4: autoDraw = False
+58.6113 	EXP 	text_5: autoDraw = False
+58.6113 	EXP 	text_3: text = 'ladybug'
+58.6113 	EXP 	text_4: autoDraw = True
+59.0969 	DATA 	Keypress: equal
+59.0984 	DATA 	Keypress: 5
+59.5951 	EXP 	text_3: autoDraw = True
+59.6008 	EXP 	text_4: autoDraw = False
+60.5884 	DATA 	Keypress: equal
+60.5906 	DATA 	Keypress: 5
+62.0808 	DATA 	Keypress: 5
+62.0824 	DATA 	Keypress: equal
+63.5809 	DATA 	Keypress: equal
+63.5826 	DATA 	Keypress: 5
+64.6115 	EXP 	text_5: autoDraw = True
+65.0975 	DATA 	Keypress: equal
+65.0992 	DATA 	Keypress: 5
+65.5220 	DATA 	Keypress: 1
+66.5974 	DATA 	Keypress: equal
+66.5988 	DATA 	Keypress: 5
+68.0814 	DATA 	Keypress: 5
+68.0830 	DATA 	Keypress: equal
+69.5860 	EXP 	New trial (rep=0, index=3): OrderedDict([('Word', 'leopard')])
+69.5949 	DATA 	Keypress: 5
+69.5971 	DATA 	Keypress: equal
+69.6114 	EXP 	text_3: autoDraw = False
+69.6114 	EXP 	text_4: autoDraw = False
+69.6114 	EXP 	text_5: autoDraw = False
+69.6114 	EXP 	text_3: text = 'leopard'
+69.6114 	EXP 	text_4: autoDraw = True
+70.5948 	EXP 	text_3: autoDraw = True
+70.6006 	EXP 	text_4: autoDraw = False
+71.0882 	DATA 	Keypress: equal
+71.0901 	DATA 	Keypress: 5
+72.5990 	DATA 	Keypress: equal
+72.6013 	DATA 	Keypress: 5
+74.0971 	DATA 	Keypress: equal
+74.0987 	DATA 	Keypress: 5
+75.5946 	EXP 	text_5: autoDraw = True
+75.5986 	DATA 	Keypress: equal
+75.6006 	DATA 	Keypress: 5
+76.7827 	DATA 	Keypress: 1
+77.0985 	DATA 	Keypress: equal
+77.1006 	DATA 	Keypress: 5
+78.5987 	DATA 	Keypress: 5
+78.6007 	DATA 	Keypress: equal
+80.0893 	DATA 	Keypress: 5
+80.0916 	DATA 	Keypress: equal
+80.5854 	EXP 	New trial (rep=0, index=4): OrderedDict([('Word', 'hummingbird')])
+80.6017 	EXP 	text_3: autoDraw = False
+80.6017 	EXP 	text_4: autoDraw = False
+80.6017 	EXP 	text_5: autoDraw = False
+80.6017 	EXP 	text_3: text = 'hummingbird'
+80.6017 	EXP 	text_4: autoDraw = True
+81.5841 	EXP 	text_3: autoDraw = True
+81.5889 	DATA 	Keypress: equal
+81.5913 	DATA 	Keypress: 5
+81.6005 	EXP 	text_4: autoDraw = False
+83.0887 	DATA 	Keypress: 5
+83.0909 	DATA 	Keypress: equal
+84.5884 	DATA 	Keypress: 5
+84.5904 	DATA 	Keypress: equal
+86.0968 	DATA 	Keypress: 5
+86.0988 	DATA 	Keypress: equal
+86.5947 	EXP 	text_5: autoDraw = True
+87.5903 	DATA 	Keypress: 5
+87.5925 	DATA 	Keypress: equal
+87.7654 	DATA 	Keypress: 1
+89.0885 	DATA 	Keypress: 5
+89.0905 	DATA 	Keypress: equal
+90.5811 	DATA 	Keypress: 5
+90.5833 	DATA 	Keypress: equal
+91.5849 	EXP 	text_3: autoDraw = False
+91.5868 	EXP 	New trial (rep=0, index=5): OrderedDict([('Word', 'treadmill')])
+91.6014 	EXP 	text_3: autoDraw = False
+91.6014 	EXP 	text_4: autoDraw = False
+91.6014 	EXP 	text_5: autoDraw = False
+91.6014 	EXP 	text_3: text = 'treadmill'
+91.6014 	EXP 	text_4: autoDraw = True
+92.0894 	DATA 	Keypress: 5
+92.0917 	DATA 	Keypress: equal
+92.6014 	EXP 	text_3: autoDraw = True
+92.6014 	EXP 	text_4: autoDraw = False
+93.5884 	DATA 	Keypress: equal
+93.5906 	DATA 	Keypress: 5
+95.0805 	DATA 	Keypress: 5
+95.0826 	DATA 	Keypress: equal
+96.5970 	DATA 	Keypress: 5
+96.5991 	DATA 	Keypress: equal
+97.5846 	EXP 	text_5: autoDraw = True
+98.0975 	DATA 	Keypress: 5
+98.0996 	DATA 	Keypress: equal
+98.5540 	DATA 	Keypress: 2
+99.5886 	DATA 	Keypress: 5
+99.5908 	DATA 	Keypress: equal
+101.0893 	DATA 	Keypress: equal
+101.0916 	DATA 	Keypress: 5
+102.5843 	EXP 	text_5: autoDraw = False
+102.5859 	EXP 	New trial (rep=0, index=6): OrderedDict([('Word', 'cabdriver')])
+102.5958 	DATA 	Keypress: 5
+102.5978 	DATA 	Keypress: equal
+102.6112 	EXP 	text_3: autoDraw = False
+102.6112 	EXP 	text_4: autoDraw = False
+102.6112 	EXP 	text_5: autoDraw = False
+102.6112 	EXP 	text_3: text = 'cabdriver'
+102.6112 	EXP 	text_4: autoDraw = True
+103.5843 	EXP 	text_3: autoDraw = True
+103.6185 	EXP 	text_4: autoDraw = False
+104.0896 	DATA 	Keypress: 5
+104.0920 	DATA 	Keypress: equal
+105.5895 	DATA 	Keypress: 5
+105.5918 	DATA 	Keypress: equal
+107.0887 	DATA 	Keypress: 5
+107.0908 	DATA 	Keypress: equal
+108.5843 	EXP 	text_5: autoDraw = True
+108.5893 	DATA 	Keypress: equal
+108.5915 	DATA 	Keypress: 5
+109.7734 	DATA 	Keypress: 1
+110.0806 	DATA 	Keypress: equal
+110.0826 	DATA 	Keypress: 5
+111.5974 	DATA 	Keypress: 5
+111.5994 	DATA 	Keypress: equal
+113.0892 	DATA 	Keypress: 5
+113.0913 	DATA 	Keypress: equal
+113.5696 	EXP 	New trial (rep=0, index=7): OrderedDict([('Word', 'knight')])
+113.5841 	EXP 	text_3: autoDraw = False
+113.5841 	EXP 	text_5: autoDraw = False
+113.5841 	EXP 	text_3: autoDraw = False
+113.5841 	EXP 	text_4: autoDraw = False
+113.5841 	EXP 	text_5: autoDraw = False
+113.5841 	EXP 	text_3: text = 'knight'
+113.5841 	EXP 	text_4: autoDraw = True
+114.5677 	EXP 	text_3: autoDraw = True
+114.5849 	EXP 	text_4: autoDraw = False
+114.5898 	DATA 	Keypress: 5
+114.5921 	DATA 	Keypress: equal
+116.0896 	DATA 	Keypress: 5
+116.0919 	DATA 	Keypress: equal
+117.5890 	DATA 	Keypress: equal
+117.5913 	DATA 	Keypress: 5
+119.0887 	DATA 	Keypress: 5
+119.0908 	DATA 	Keypress: equal
+119.5674 	EXP 	text_5: autoDraw = True
+120.5807 	DATA 	Keypress: 5
+120.5827 	DATA 	Keypress: equal
+121.6328 	DATA 	Keypress: 1
+122.0906 	DATA 	Keypress: 5
+122.0927 	DATA 	Keypress: equal
+123.5889 	DATA 	Keypress: equal
+123.5910 	DATA 	Keypress: 5
+124.5533 	EXP 	New trial (rep=0, index=8): OrderedDict([('Word', 'snowball')])
+124.5679 	EXP 	text_3: autoDraw = False
+124.5679 	EXP 	text_5: autoDraw = False
+124.5679 	EXP 	text_3: autoDraw = False
+124.5679 	EXP 	text_4: autoDraw = False
+124.5679 	EXP 	text_5: autoDraw = False
+124.5679 	EXP 	text_3: text = 'snowball'
+124.5679 	EXP 	text_4: autoDraw = True
+125.0879 	DATA 	Keypress: equal
+125.0900 	DATA 	Keypress: 5
+125.5511 	EXP 	text_3: autoDraw = True
+125.5674 	EXP 	text_4: autoDraw = False
+126.5898 	DATA 	Keypress: 5
+126.5922 	DATA 	Keypress: equal
+128.0898 	DATA 	Keypress: 5
+128.0921 	DATA 	Keypress: equal
+129.5896 	DATA 	Keypress: 5
+129.5920 	DATA 	Keypress: equal
+130.5511 	EXP 	text_5: autoDraw = True
+131.0974 	DATA 	Keypress: equal
+131.0995 	DATA 	Keypress: 5
+131.3209 	DATA 	Keypress: 2
+132.5890 	DATA 	Keypress: equal
+132.5912 	DATA 	Keypress: 5
+134.0891 	DATA 	Keypress: 5
+134.0912 	DATA 	Keypress: equal
+135.5460 	EXP 	New trial (rep=0, index=9): OrderedDict([('Word', 'waterfall')])
+135.5607 	EXP 	text_3: autoDraw = False
+135.5607 	EXP 	text_5: autoDraw = False
+135.5607 	EXP 	text_3: autoDraw = False
+135.5607 	EXP 	text_4: autoDraw = False
+135.5607 	EXP 	text_5: autoDraw = False
+135.5607 	EXP 	text_3: text = 'waterfall'
+135.5607 	EXP 	text_4: autoDraw = True
+135.5798 	DATA 	Keypress: 5
+135.5819 	DATA 	Keypress: equal
+136.5435 	EXP 	text_3: autoDraw = True
+136.5604 	EXP 	text_4: autoDraw = False
+137.0879 	DATA 	Keypress: 5
+137.0901 	DATA 	Keypress: equal
+138.5896 	DATA 	Keypress: equal
+138.5919 	DATA 	Keypress: 5
+140.0897 	DATA 	Keypress: equal
+140.0921 	DATA 	Keypress: 5
+141.5516 	EXP 	text_5: autoDraw = True
+141.5808 	DATA 	Keypress: equal
+141.5827 	DATA 	Keypress: 5
+142.4385 	DATA 	Keypress: 1
+143.0886 	DATA 	Keypress: 5
+143.0907 	DATA 	Keypress: equal
+144.5901 	DATA 	Keypress: 5
+144.5924 	DATA 	Keypress: equal
+146.0894 	DATA 	Keypress: equal
+146.0916 	DATA 	Keypress: 5
+146.5364 	EXP 	New trial (rep=0, index=10): OrderedDict([('Word', 'baby')])
+146.5517 	EXP 	text_3: autoDraw = False
+146.5517 	EXP 	text_5: autoDraw = False
+146.5517 	EXP 	text_3: autoDraw = False
+146.5517 	EXP 	text_4: autoDraw = False
+146.5517 	EXP 	text_5: autoDraw = False
+146.5517 	EXP 	text_3: text = 'baby'
+146.5517 	EXP 	text_4: autoDraw = True
+147.5342 	EXP 	text_3: autoDraw = True
+147.5517 	EXP 	text_4: autoDraw = False
+147.5898 	DATA 	Keypress: equal
+147.5921 	DATA 	Keypress: 5
+149.0889 	DATA 	Keypress: equal
+149.0910 	DATA 	Keypress: 5
+150.5882 	DATA 	Keypress: equal
+150.5902 	DATA 	Keypress: 5
+152.0890 	DATA 	Keypress: 5
+152.0912 	DATA 	Keypress: equal
+152.5437 	EXP 	text_5: autoDraw = True
+153.3903 	DATA 	Keypress: 1
+153.5895 	DATA 	Keypress: equal
+153.5918 	DATA 	Keypress: 5
+155.0889 	DATA 	Keypress: equal
+155.0910 	DATA 	Keypress: 5
+156.5903 	DATA 	Keypress: equal
+156.5926 	DATA 	Keypress: 5
+157.5342 	EXP 	text_3: autoDraw = False
+157.5365 	EXP 	New trial (rep=0, index=11): OrderedDict([('Word', 'passport')])
+157.5515 	EXP 	text_5: autoDraw = False
+157.5515 	EXP 	text_3: autoDraw = False
+157.5515 	EXP 	text_4: autoDraw = False
+157.5515 	EXP 	text_5: autoDraw = False
+157.5515 	EXP 	text_3: text = 'passport'
+157.5515 	EXP 	text_4: autoDraw = True
+158.0881 	DATA 	Keypress: equal
+158.0901 	DATA 	Keypress: 5
+158.5343 	EXP 	text_3: autoDraw = True
+158.5515 	EXP 	text_4: autoDraw = False
+159.5874 	DATA 	Keypress: 5
+159.5894 	DATA 	Keypress: equal
+161.0806 	DATA 	Keypress: equal
+161.0826 	DATA 	Keypress: 5
+162.5887 	DATA 	Keypress: equal
+162.5909 	DATA 	Keypress: 5
+163.5347 	EXP 	text_5: autoDraw = True
+164.0890 	DATA 	Keypress: equal
+164.0912 	DATA 	Keypress: 5
+164.3796 	DATA 	Keypress: 2
+165.5975 	DATA 	Keypress: equal
+165.5995 	DATA 	Keypress: 5
+167.0973 	DATA 	Keypress: equal
+167.0993 	DATA 	Keypress: 5
+168.5196 	EXP 	New trial (rep=0, index=12): OrderedDict([('Word', 'cheerleader')])
+168.5436 	EXP 	text_3: autoDraw = False
+168.5436 	EXP 	text_5: autoDraw = False
+168.5436 	EXP 	text_3: autoDraw = False
+168.5436 	EXP 	text_4: autoDraw = False
+168.5436 	EXP 	text_5: autoDraw = False
+168.5436 	EXP 	text_3: text = 'cheerleader'
+168.5436 	EXP 	text_4: autoDraw = True
+168.5790 	DATA 	Keypress: equal
+168.5811 	DATA 	Keypress: 5
+169.5184 	EXP 	text_3: autoDraw = True
+169.5597 	EXP 	text_4: autoDraw = False
+170.0896 	DATA 	Keypress: 5
+170.0920 	DATA 	Keypress: equal
+171.5804 	DATA 	Keypress: equal
+171.5825 	DATA 	Keypress: 5
+173.0792 	DATA 	Keypress: equal
+173.0812 	DATA 	Keypress: 5
+174.5184 	EXP 	text_5: autoDraw = True
+174.5901 	DATA 	Keypress: equal
+174.5924 	DATA 	Keypress: 5
+176.0902 	DATA 	Keypress: equal
+176.0926 	DATA 	Keypress: 5
+176.3810 	DATA 	Keypress: 1
+177.5901 	DATA 	Keypress: equal
+177.5924 	DATA 	Keypress: 5
+179.0902 	DATA 	Keypress: equal
+179.0925 	DATA 	Keypress: 5
+179.5039 	EXP 	New trial (rep=0, index=13): OrderedDict([('Word', 'grandfather')])
+179.5269 	EXP 	text_3: autoDraw = False
+179.5269 	EXP 	text_5: autoDraw = False
+179.5269 	EXP 	text_3: autoDraw = False
+179.5269 	EXP 	text_4: autoDraw = False
+179.5269 	EXP 	text_5: autoDraw = False
+179.5269 	EXP 	text_3: text = 'grandfather'
+179.5269 	EXP 	text_4: autoDraw = True
+180.5010 	EXP 	text_3: autoDraw = True
+180.5350 	EXP 	text_4: autoDraw = False
+180.5791 	DATA 	Keypress: equal
+180.5811 	DATA 	Keypress: 5
+182.0792 	DATA 	Keypress: equal
+182.0812 	DATA 	Keypress: 5
+183.5885 	DATA 	Keypress: 5
+183.5906 	DATA 	Keypress: equal
+185.0896 	DATA 	Keypress: 5
+185.0918 	DATA 	Keypress: equal
+185.5101 	EXP 	text_5: autoDraw = True
+186.2402 	DATA 	Keypress: 1
+186.5800 	DATA 	Keypress: 5
+186.5819 	DATA 	Keypress: equal
+188.0909 	DATA 	Keypress: 5
+188.0929 	DATA 	Keypress: equal
+189.5962 	DATA 	Keypress: 5
+189.5981 	DATA 	Keypress: equal
+190.4957 	EXP 	New trial (rep=0, index=14): OrderedDict([('Word', 'axe')])
+190.5101 	EXP 	text_3: autoDraw = False
+190.5101 	EXP 	text_5: autoDraw = False
+190.5101 	EXP 	text_3: autoDraw = False
+190.5101 	EXP 	text_4: autoDraw = False
+190.5101 	EXP 	text_5: autoDraw = False
+190.5101 	EXP 	text_3: text = 'axe'
+190.5101 	EXP 	text_4: autoDraw = True
+191.0884 	DATA 	Keypress: 5
+191.0906 	DATA 	Keypress: equal
+191.5015 	EXP 	text_3: autoDraw = True
+191.5015 	EXP 	text_4: autoDraw = False
+192.5796 	DATA 	Keypress: 5
+192.5816 	DATA 	Keypress: equal
+194.0893 	DATA 	Keypress: 5
+194.0915 	DATA 	Keypress: equal
+195.5892 	DATA 	Keypress: 5
+195.5915 	DATA 	Keypress: equal
+196.5012 	EXP 	text_5: autoDraw = True
+197.0899 	DATA 	Keypress: 5
+197.0920 	DATA 	Keypress: equal
+198.3066 	DATA 	Keypress: 1
+198.5897 	DATA 	Keypress: 5
+198.5920 	DATA 	Keypress: equal
+200.0891 	DATA 	Keypress: 5
+200.0913 	DATA 	Keypress: equal
+201.4864 	EXP 	New trial (rep=0, index=15): OrderedDict([('Word', 'ketchup')])
+201.5016 	EXP 	text_3: autoDraw = False
+201.5016 	EXP 	text_5: autoDraw = False
+201.5016 	EXP 	text_3: autoDraw = False
+201.5016 	EXP 	text_4: autoDraw = False
+201.5016 	EXP 	text_5: autoDraw = False
+201.5016 	EXP 	text_3: text = 'ketchup'
+201.5016 	EXP 	text_4: autoDraw = True
+201.5959 	DATA 	Keypress: 5
+201.5979 	DATA 	Keypress: equal
+202.4845 	EXP 	text_3: autoDraw = True
+202.5016 	EXP 	text_4: autoDraw = False
+203.0893 	DATA 	Keypress: 5
+203.0916 	DATA 	Keypress: equal
+204.5893 	DATA 	Keypress: 5
+204.5916 	DATA 	Keypress: equal
+206.0962 	DATA 	Keypress: 5
+206.0981 	DATA 	Keypress: equal
+207.4931 	EXP 	text_5: autoDraw = True
+207.5897 	DATA 	Keypress: equal
+207.5919 	DATA 	Keypress: 5
+208.9645 	DATA 	Keypress: 2
+209.0963 	DATA 	Keypress: 5
+209.0983 	DATA 	Keypress: equal
+210.5965 	DATA 	Keypress: 5
+210.5985 	DATA 	Keypress: equal
+212.0964 	DATA 	Keypress: 5
+212.0984 	DATA 	Keypress: equal
+212.4931 	EXP 	text_3: autoDraw = False
+212.4953 	EXP 	New trial (rep=0, index=16): OrderedDict([('Word', 'porcupine')])
+212.5089 	EXP 	text_5: autoDraw = False
+212.5089 	EXP 	text_3: autoDraw = False
+212.5089 	EXP 	text_4: autoDraw = False
+212.5089 	EXP 	text_5: autoDraw = False
+212.5089 	EXP 	text_3: text = 'porcupine'
+212.5089 	EXP 	text_4: autoDraw = True
+213.5099 	EXP 	text_3: autoDraw = True
+213.5182 	EXP 	text_4: autoDraw = False
+213.5900 	DATA 	Keypress: 5
+213.5921 	DATA 	Keypress: equal
+215.0899 	DATA 	Keypress: equal
+215.0922 	DATA 	Keypress: 5
+216.5891 	DATA 	Keypress: 5
+216.5915 	DATA 	Keypress: equal
+218.0900 	DATA 	Keypress: 5
+218.0922 	DATA 	Keypress: equal
+218.5019 	EXP 	text_5: autoDraw = True
+219.0881 	DATA 	Keypress: 1
+219.5885 	DATA 	Keypress: 5
+219.5904 	DATA 	Keypress: equal
+221.0904 	DATA 	Keypress: 5
+221.0926 	DATA 	Keypress: equal
+222.5799 	DATA 	Keypress: equal
+222.5819 	DATA 	Keypress: 5
+223.5093 	EXP 	text_5: autoDraw = False
+223.5115 	EXP 	New trial (rep=0, index=17): OrderedDict([('Word', 'chipmunk')])
+223.5261 	EXP 	text_3: autoDraw = False
+223.5261 	EXP 	text_3: autoDraw = False
+223.5261 	EXP 	text_4: autoDraw = False
+223.5261 	EXP 	text_5: autoDraw = False
+223.5261 	EXP 	text_3: text = 'chipmunk'
+223.5261 	EXP 	text_4: autoDraw = True
+224.0892 	DATA 	Keypress: equal
+224.0915 	DATA 	Keypress: 5
+224.5015 	EXP 	text_3: autoDraw = True
+224.5432 	EXP 	text_4: autoDraw = False
+225.5901 	DATA 	Keypress: 5
+225.5923 	DATA 	Keypress: equal
+227.0899 	DATA 	Keypress: 5
+227.0921 	DATA 	Keypress: equal
+228.5957 	DATA 	Keypress: 5
+228.5976 	DATA 	Keypress: equal
+229.5095 	EXP 	text_5: autoDraw = True
+230.0897 	DATA 	Keypress: equal
+230.0920 	DATA 	Keypress: 5
+230.2810 	DATA 	Keypress: 2
+231.5799 	DATA 	Keypress: 5
+231.5819 	DATA 	Keypress: equal
+231.8381 	DATA 	Keypress: 1
+232.1980 	DATA 	Keypress: 1
+232.5386 	DATA 	Keypress: 1
+233.0900 	DATA 	Keypress: 5
+233.0921 	DATA 	Keypress: equal
+234.5017 	EXP 	text_3: autoDraw = False
+234.5039 	EXP 	New trial (rep=0, index=18): OrderedDict([('Word', 'mirror')])
+234.5177 	EXP 	text_5: autoDraw = False
+234.5177 	EXP 	text_3: autoDraw = False
+234.5177 	EXP 	text_4: autoDraw = False
+234.5177 	EXP 	text_5: autoDraw = False
+234.5177 	EXP 	text_3: text = 'mirror'
+234.5177 	EXP 	text_4: autoDraw = True
+234.5896 	DATA 	Keypress: 5
+234.5918 	DATA 	Keypress: equal
+235.5012 	EXP 	text_3: autoDraw = True
+235.5185 	EXP 	text_4: autoDraw = False
+236.0905 	DATA 	Keypress: 5
+236.0926 	DATA 	Keypress: equal
+237.5892 	DATA 	Keypress: equal
+237.5915 	DATA 	Keypress: 5
+239.0898 	DATA 	Keypress: equal
+239.0920 	DATA 	Keypress: 5
+240.5011 	EXP 	text_5: autoDraw = True
+240.5903 	DATA 	Keypress: 5
+240.5925 	DATA 	Keypress: equal
+241.2383 	DATA 	Keypress: 2
+242.0971 	DATA 	Keypress: 5
+242.0993 	DATA 	Keypress: equal
+243.5797 	DATA 	Keypress: 5
+243.5817 	DATA 	Keypress: equal
+245.0903 	DATA 	Keypress: equal
+245.0924 	DATA 	Keypress: 5
+245.4863 	EXP 	New trial (rep=0, index=19): OrderedDict([('Word', 'necklace')])
+245.5011 	EXP 	text_3: autoDraw = False
+245.5011 	EXP 	text_5: autoDraw = False
+245.5011 	EXP 	text_3: autoDraw = False
+245.5011 	EXP 	text_4: autoDraw = False
+245.5011 	EXP 	text_5: autoDraw = False
+245.5011 	EXP 	text_3: text = 'necklace'
+245.5011 	EXP 	text_4: autoDraw = True
+246.4846 	EXP 	text_3: autoDraw = True
+246.5010 	EXP 	text_4: autoDraw = False
+246.5899 	DATA 	Keypress: 5
+246.5922 	DATA 	Keypress: equal
+248.0885 	DATA 	Keypress: 5
+248.0908 	DATA 	Keypress: equal
+249.5885 	DATA 	Keypress: 5
+249.5908 	DATA 	Keypress: equal
+251.0891 	DATA 	Keypress: 5
+251.0913 	DATA 	Keypress: equal
+251.4851 	EXP 	text_5: autoDraw = True
+251.9958 	DATA 	Keypress: 2
+252.5913 	DATA 	Keypress: equal
+252.5934 	DATA 	Keypress: 5
+254.0963 	DATA 	Keypress: equal
+254.0983 	DATA 	Keypress: 5
+255.5904 	DATA 	Keypress: equal
+255.5926 	DATA 	Keypress: 5
+256.4844 	EXP 	text_3: autoDraw = False
+256.4844 	EXP 	text_5: autoDraw = False
+256.4844 	EXP 	text_3: autoDraw = False
+256.4844 	EXP 	text_4: autoDraw = False
+256.4844 	EXP 	text_5: autoDraw = False
+256.4844 	EXP 	text_6: autoDraw = True
+257.0881 	DATA 	Keypress: 5
+257.0902 	DATA 	Keypress: equal
+258.5901 	DATA 	Keypress: 5
+258.5923 	DATA 	Keypress: equal
+260.0901 	DATA 	Keypress: 5
+260.0923 	DATA 	Keypress: equal
+261.4853 	EXP 	text_6: autoDraw = False
+261.4853 	EXP 	text_6: autoDraw = False
+261.7618 	EXP 	window1: mouseVisible = True

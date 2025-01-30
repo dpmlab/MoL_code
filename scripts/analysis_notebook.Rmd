@@ -1,0 +1,613 @@
+---
+title: "Analysis"
+output: html_document
+---
+
+
+Setting up the notebook
+```{r}
+library(lme4)
+library(lmerTest)
+library(dplyr)
+library(ggplot2)
+library(stringr)
+library(lattice)
+library(tidyverse)
+
+dataset_full <-read.csv('/Volumes/data/MoL_clean/outputs/story_matrix_withHipp.csv')
+dataset_full$subses <- paste(dataset_full$sub, dataset_full$ses, sep='')
+dataset_full$time <- ifelse(dataset_full$ses == 'ses-01', 1, 
+                       ifelse(dataset_full$ses == 'ses-02', 2, 
+                              ifelse(dataset_full$ses == 'ses-03', 2, 
+                                     dataset_full$ses)))
+dataset_full$time <- as.integer(dataset_full$time)
+dataset_full <- dataset_full %>%
+  mutate(subject_number = as.numeric(substring(sub, 5)),
+         group = ifelse(subject_number >= 101, "E", "N"))
+
+dataset_full <- dataset_full %>% mutate(
+  condition = case_when(
+    group == "N" & time == 1 ~ "Week 2",
+    group == "N" & time == 2 ~ "Week 4",
+    group == "E" & time == 2 ~ "Expert",
+    
+    TRUE ~ "Other"
+  )
+)
+dataset_full$story_details <- 1-dataset_full$story_deviation
+dataset <- dataset_full[dataset_full$correct == 'True',]
+
+# filter to session 1 and 2, set it to numeric
+filtered_dataset <- subset(dataset, ses == 'ses-01' | ses == 'ses-02')
+filtered_dataset$ses <- ifelse(filtered_dataset$ses == 'ses-01', 1, 
+                               ifelse(filtered_dataset$ses == 'ses-02', 2, 
+                                      ifelse(filtered_dataset$ses == 'ses-03', 2, 
+                                      filtered_dataset$ses)))
+
+graphtheme = theme(plot.title = element_text(hjust = 0.5),text=element_text(size=20))  + theme(panel.border = element_blank(), panel.grid.major = element_blank(),panel.grid.minor = element_blank(), axis.line = element_line(colour = "black")) +  theme(panel.background = element_rect(fill='white',color = 'white'))
+graphtheme_small_text = theme(plot.title = element_text(hjust = 0.5),text=element_text(size=16))  + theme(panel.border = element_blank(), panel.grid.major = element_blank(),panel.grid.minor = element_blank(), axis.line = element_line(colour = "black")) +  theme(panel.background = element_rect(fill='white',color = 'white'))
+
+```
+
+
+Session difference in story deviation and E-R similarity
+```{r}
+
+# see if session has an effect on story deviation and e-r similarity
+novices_dataset <- dataset[dataset$group=='N',]
+story_dev_session <- lmer(story_details~time+(1|sub),data = novices_dataset)
+summary(story_dev_session)
+
+
+conj_session_mpfc <- lmer(beta_e_residual_z_mpfc~ time +speak_duration +(1|sub), data = novices_dataset)
+conj_session_ag <- lmer(beta_e_residual_z_ag ~ time+speak_duration +(1|sub), data = novices_dataset)
+conj_session_pmc <- lmer(beta_e_residual_z_pmc ~ time+speak_duration +(1|sub), data = novices_dataset)
+summary(conj_session_ag)
+summary(conj_session_pmc)
+summary(conj_session_mpfc)
+
+# no change in either locus/item in encoding
+elsim_session_mpfc <- lmer(e_l_sim_mpfc~ time  +(1|sub), data = novices_dataset)
+elsim_session_ag <- lmer(e_l_sim_ag ~ time  +(1|sub), data = novices_dataset)
+elsim_session_pmc <- lmer(e_l_sim_pmc ~ time  +(1|sub), data = novices_dataset)
+summary(elsim_session_ag)
+summary(elsim_session_pmc)
+summary(elsim_session_mpfc)
+
+eisim_session_mpfc <- lmer(e_i_sim_mpfc~ time  +(1|sub), data = novices_dataset)
+eisim_session_ag <- lmer(e_i_sim_ag ~ time  +(1|sub), data = novices_dataset)
+eisim_session_pmc <- lmer(e_i_sim_pmc ~ time  +(1|sub), data = novices_dataset)
+summary(eisim_session_ag)
+summary(eisim_session_pmc)
+summary(eisim_session_mpfc)
+
+# no change in either locus/item in retrieval
+rlsim_session_mpfc <- lmer(beta_l_z_mpfc~ time  +(1|sub), data = novices_dataset)
+rlsim_session_ag <- lmer(beta_l_z_ag ~ time  +(1|sub), data = novices_dataset)
+rlsim_session_pmc <- lmer(beta_l_z_pmc ~ time  +(1|sub), data = novices_dataset)
+summary(rlsim_session_ag)
+summary(rlsim_session_pmc)
+summary(rlsim_session_mpfc)
+
+risim_session_mpfc <- lmer(beta_i_z_mpfc~ time  +(1|sub), data = novices_dataset)
+risim_session_ag <- lmer(beta_i_z_ag ~ time  +(1|sub), data = novices_dataset)
+risim_session_pmc <- lmer(beta_i_z_pmc ~ time  +(1|sub), data = novices_dataset)
+summary(risim_session_ag)
+summary(risim_session_pmc)
+summary(risim_session_mpfc)
+
+```
+
+
+Predict story distance from univariate and representational similarity 
+```{r}
+r_ersim_mpfc <- lmer(story_details ~ beta_e_residual_z_mpfc+speak_duration +(1|sub)+(1|ses), data=dataset)
+r_ersim_ag <- lmer(story_details ~ beta_e_residual_z_ag+speak_duration +(1|sub)+(1|ses), data=dataset)
+r_ersim_pmc <- lmer(story_details ~ beta_e_residual_z_pmc+speak_duration +(1|sub)+(1|ses), data=dataset)
+summary(r_ersim_ag)
+summary(r_ersim_pmc)
+summary(r_ersim_mpfc)
+
+r_uni_mpfc <- lmer(story_details ~ encode_mpfc_univariate +(1|sub)+(1|ses), data=dataset)
+r_uni_ag <- lmer(story_details ~ encode_ag_univariate +(1|sub)+(1|ses), data=dataset)
+r_uni_pmc <- lmer(story_details ~ encode_pmc_univariate +(1|sub)+(1|ses), data=dataset)
+
+summary(r_uni_ag)
+summary(r_uni_pmc)
+summary(r_uni_mpfc)
+
+r_uni_multi_mpfc <- lmer(beta_e_residual_z_mpfc ~ encode_mpfc_univariate +(1|sub), data=dataset)
+r_uni_multi_ag <- lmer(beta_e_residual_z_ag ~ encode_ag_univariate +(1|sub), data=dataset)
+r_uni_multi_pmc <- lmer(beta_e_residual_z_pmc ~ encode_pmc_univariate +(1|sub), data=dataset)
+
+summary(r_uni_multi_ag)
+summary(r_uni_multi_pmc)
+summary(r_uni_multi_mpfc)
+```
+
+Univariate activity vs. story deviation figure, no longer used in the main figure
+```{r}
+
+ggplot()+
+  geom_line(data = dataset, aes(x = encode_ag_univariate, 
+                                y = story_details, 
+                                group = sub), size=.4,color = 'blue',
+            stat='smooth',alpha = 0.3,
+            method = 'lm')+
+  geom_line(data = dataset, aes(x =encode_ag_univariate, 
+                                y = story_details),size=1.2,color = 'blue',
+            stat = 'smooth', method = 'lm')+
+  theme_minimal() +  graphtheme + theme(aspect.ratio = 1) + 
+  labs(x = "AG", y = "Distance between story and locus-item")
+ggsave('ag_uni_storysim.svg')
+
+ggplot()+
+  geom_line(data = dataset, aes(x = encode_pmc_univariate, 
+                                y = story_details, 
+                                group = sub), size=.4,color = 'blue',
+            stat='smooth',alpha = 0.3,
+            method = 'lm')+
+  geom_line(data = dataset, aes(x =encode_pmc_univariate, 
+                                y = story_details),size=1.2,color = 'blue',
+            stat = 'smooth', method = 'lm')+
+  theme_minimal() + graphtheme + theme(aspect.ratio = 1)+
+  labs(x = "PMC", y = "Distance between story and locus-item")
+ggsave('pmc_uni_storysim.svg')
+
+ggplot()+
+  geom_line(data = dataset, aes(x = encode_mpfc_univariate, 
+                                y = story_details, 
+                                group = sub), size=.4,color = 'blue',
+            stat='smooth',alpha = 0.3,
+            method = 'lm')+ 
+  geom_line(data = dataset, aes(x =encode_mpfc_univariate, 
+                                y = story_details),size=1.2,color = 'blue',
+            stat = 'smooth', method = 'lm')+
+  theme_minimal() + graphtheme+ theme(aspect.ratio = 1) +
+  labs(x = "mPFC", y = "Distance between story and locus-item")
+ggsave('mpfc_uni_storysim.svg')
+
+
+```
+
+figure 5e
+```{r}
+
+ggplot()+
+  geom_line(data = dataset, aes(x = condition, 
+                                y = story_details, 
+                                group = sub), size=.4,color = 'black',
+                          stat='smooth',alpha = 0.5,
+                          method = 'lm')+
+  theme_minimal() + graphtheme+theme(aspect.ratio = 1.5) +
+  labs(x = "session", y = "story deviation")
+ggsave('session_storysim.svg')
+
+
+
+ggplot()+
+  geom_line(data = dataset, aes(x = beta_e_residual_z_mpfc, 
+                                y = story_details, 
+                                group = sub), size=.4,color = 'magenta',
+                          stat='smooth',alpha = 0.3,
+                          method = 'lm')+
+  geom_line(data = dataset, aes(x =beta_e_residual_z_mpfc, 
+                                y = story_details),size=1.2,color = 'magenta',
+                          stat = 'smooth', method = 'lm')+
+  theme_minimal() + graphtheme+theme(aspect.ratio = 1) +
+  labs(x = "mPFC", y = "story deviation")
+ggsave('mpfc_ersim_storysim.svg')
+
+
+
+ggplot()+
+  geom_line(data = dataset, aes(x = beta_e_residual_z_ag, 
+                                y = story_details, 
+                                group = sub), size=.4,color = 'blue',
+            stat='smooth',alpha = 0.3,
+            method = 'lm')+
+  geom_line(data = dataset, aes(x =beta_e_residual_z_ag, 
+                                y = story_details),size=1.2,color = 'blue',
+            stat = 'smooth', method = 'lm')+
+  theme_minimal() + graphtheme+theme(aspect.ratio = 1) +
+  labs(x = "AG", y = "story deviation")
+ggsave('ag_ersim_storysim.svg')
+
+
+
+ggplot()+
+  geom_line(data = dataset, aes(x = beta_e_residual_z_pmc, 
+                                y = story_details, 
+                                group = sub), size=.4,color = 'red',
+            stat='smooth',alpha = 0.3,
+            method = 'lm')+
+  geom_line(data = dataset, aes(x =beta_e_residual_z_pmc, 
+                                y = story_details),size=1.2,color = 'red',
+            stat = 'smooth', method = 'lm')+
+  theme_minimal() + graphtheme+theme(aspect.ratio = 1) +
+  labs(x = "PMC", y = "story deviation") 
+ggsave('pmc_ersim_storysim.svg')
+
+
+```
+
+
+```{r}
+subject_averages_er_byses <- dataset %>%
+     group_by(sub, ses) %>%
+     summarize(mpfc = mean(beta_e_residual_z_mpfc, na.rm = TRUE), 
+               mean_story_details = mean(story_details, na.rm = TRUE),
+               ag = mean(beta_e_residual_z_ag, na.rm=TRUE),
+               pmc = mean(beta_e_residual_z_pmc, na.rm = TRUE),
+               #hippocampus = mean(e_r_sim_hipp, na.rm = TRUE)
+     )
+
+df_week2 <- subject_averages_er_byses %>%
+  filter(ses == "ses-02")
+
+df_week4 <- subject_averages_er_byses %>%
+  filter(ses == "ses-03")
+
+df_merged <- merge(df_week2, df_week4, by = "sub", suffixes = c('_w4d1','_w4d2'))
+df_merged
+
+cor.test(df_merged$ag_w4d1, df_merged$ag_w4d2)
+cor.test(df_merged$pmc_w4d1, df_merged$pmc_w4d2)
+cor.test(df_merged$mpfc_w4d1, df_merged$mpfc_w4d2)
+
+```
+
+Create datasets for subsequent analyses
+```{r}
+# visualize session effect: 
+# Calculate averages per subject and session
+subject_averages_er <- dataset %>%
+  group_by(sub, condition) %>%
+  summarize(mpfc = mean(beta_e_residual_z_mpfc, na.rm = TRUE), 
+            mean_story_details = mean(story_details, na.rm = TRUE),
+            ag = mean(beta_e_residual_z_ag, na.rm=TRUE),
+            pmc = mean(beta_e_residual_z_pmc, na.rm = TRUE),
+            #hippocampus = mean(e_r_sim_hipp, na.rm = TRUE)
+            )
+
+
+df_diff <- subject_averages_er %>%
+  group_by(sub) %>%
+  summarize(
+    diff_mean_story_details = mean_story_details[condition == "Week 4"] - mean_story_details[condition == "Week 2"],
+    diff_ag = ag[condition == "Week 4"] - ag[condition == "Week 2"],
+    diff_mpfc = mpfc[condition == "Week 4"] - mpfc[condition == "Week 2"],
+    diff_pmc = pmc[condition == "Week 4"] - pmc[condition == "Week 2"],
+  )
+
+# Step 2: Calculate the correlation between the differences
+correlation1 <- cor.test(df_diff$diff_mean_story_details, df_diff$diff_ag, use = "complete.obs")
+correlation2 <- cor.test(df_diff$diff_mean_story_details, df_diff$diff_pmc, use = "complete.obs")
+
+correlation3 <- cor.test(df_diff$diff_mean_story_details, df_diff$diff_mpfc, use = "complete.obs")
+
+```
+
+```{r}
+subject_averages_er                          
+session_averages_by_condition <- subject_averages_er %>%
+  group_by(condition) %>%
+  summarize(
+    n = n(),
+    mpfc_mean = mean(mpfc, na.rm = TRUE),
+    mpfc_sd = sd(mpfc, na.rm = TRUE),
+    ag_mean = mean(ag, na.rm=TRUE),
+    
+    # story_sd = sd(mean_story_details, na.rm = TRUE),
+    ag_sd = sd(ag, na.rm = TRUE),
+    pmc_mean = mean(pmc, na.rm = TRUE),
+    pmc_sd = sd(pmc, na.rm = TRUE),
+    #hippocampus_mean = mean(hippocampus, na.rm = TRUE),
+    #hippocampus_sd = sd(hippocampus, na.rm =TRUE),
+    # story_mean= mean(mean_story_details, na.rm = TRUE)
+  )%>%
+  mutate(mpfc_se=mpfc_sd/sqrt(n)) %>%
+  mutate(pmc_se = pmc_sd/sqrt(n)) %>%
+  mutate(ag_se = ag_sd/sqrt(n)) #%>%
+  #mutate(story_se = story_sd/sqrt(n))
+
+
+#%>%
+  # mutate(hippocampus_se = hippocampus_sd/sqrt(n))
+
+subject_averages_long <- subject_averages_er %>%
+  pivot_longer(cols = c(ag, pmc, mpfc),
+               names_to = 'region',
+               values_to = 'encoding_recall_similarity')
+
+
+session_averages_long_by_condition <- session_averages_by_condition %>%
+  pivot_longer(cols = -condition,
+               names_to = c("region", ".value"),
+               names_pattern = "(.*)_(.*)") %>%
+  drop_na() 
+
+subject_averages_long$region[subject_averages_long$region=='ag'] <- 'AG'
+subject_averages_long$region[subject_averages_long$region=='pmc'] <- 'PMC'
+subject_averages_long$region[subject_averages_long$region=='mpfc'] <- 'mPFC'
+
+session_averages_long_by_condition$region[session_averages_long_by_condition$region=='ag'] <- 'AG'
+session_averages_long_by_condition$region[session_averages_long_by_condition$region=='pmc'] <- 'PMC'
+session_averages_long_by_condition$region[session_averages_long_by_condition$region=='mpfc'] <- 'mPFC'
+
+session_averages_long_by_condition$region <- factor(session_averages_long_by_condition$region, levels =c('AG','PMC','mPFC'))
+subject_averages_long$region <- factor(subject_averages_long$region, levels =c('AG','PMC','mPFC'))
+
+
+
+# Create the plot
+ggplot() +
+  geom_bar(data = session_averages_long_by_condition, aes(x = condition, y = mean, fill = region, alpha = 0.8), stat = "identity", position = "dodge") +
+  scale_fill_manual(values=c("blue", 
+                             "red", 
+                             "magenta")) +
+  geom_errorbar(data = session_averages_long_by_condition, aes(x = condition, ymin = mean-se, ymax = mean+se, width = .5))+
+    geom_point(data = subject_averages_long %>% filter(region =='AG'), aes(x = condition, y = encoding_recall_similarity, group = sub), color = "darkred", alpha = 0.2) +  # Adjust alpha for transparency
+  geom_line(data = subject_averages_long %>% filter(region =='AG'), aes(x = condition, y = encoding_recall_similarity, group = sub), color = "darkred", alpha = 0.2) +  # Add lines to connect the same participant's points
+  geom_point(data = subject_averages_long %>% filter(region =='PMC'), aes(x = condition, y = encoding_recall_similarity, group = sub), color = "darkred", alpha = 0.2) +  # Adjust alpha for transparency
+  geom_line(data = subject_averages_long %>% filter(region =='PMC'), aes(x = condition, y = encoding_recall_similarity, group = sub), color = "darkred", alpha = 0.2) +  # Add lines to connect the same participant's points
+  geom_point(data = subject_averages_long %>% filter(region =='mPFC'), aes(x = condition, y = encoding_recall_similarity, group = sub), color = "darkred", alpha = 0.2) +  # Adjust alpha for transparency
+  geom_line(data = subject_averages_long %>% filter(region =='mPFC'), aes(x = condition, y = encoding_recall_similarity, group = sub), color = "darkred", alpha = 0.2) +  # Add lines to connect the same participant's points
+  
+  theme_minimal() + 
+    facet_wrap(~ region)+
+  # labs(x = "Session", y = "weight of encoding in predicting recall")
+  labs(x = 'session', y = 'β_encodingResidual') + graphtheme_small_text+ theme(legend.position="none", aspect.ratio = 1)
+ggsave('session_ersim.svg')
+
+
+```
+
+
+
+
+
+
+```{r}
+
+# Filter the data for each condition and region, and perform t-test
+novice_week2_mpfc <- subject_averages_long %>% filter(condition == 'Week 2' & region == 'mPFC')
+novice_week2_ag <- subject_averages_long %>% filter(condition == 'Week 2' & region == 'AG')
+novice_week2_pmc <- subject_averages_long %>% filter(condition == 'Week 2' & region == 'PMC')
+novice_week4_mpfc <- subject_averages_long %>% filter(condition == 'Week 4' & region == 'mPFC')
+novice_week4_ag <- subject_averages_long %>% filter(condition == 'Week 4' & region == 'AG')
+novice_week4_pmc <- subject_averages_long %>% filter(condition == 'Week 4' & region == 'PMC')
+
+# one sampel t-test to show significant encoding recall partial correlation
+t_test_novice_week2_mpfc <- t.test(novice_week2_mpfc$encoding_recall_similarity, mu = 0)
+t_test_novice_week2_ag <- t.test(novice_week2_ag$encoding_recall_similarity, mu = 0)
+t_test_novice_week2_pmc <- t.test(novice_week2_pmc$encoding_recall_similarity, mu = 0)
+t_test_novice_week4_mpfc <- t.test(novice_week4_mpfc$encoding_recall_similarity, mu = 0)
+t_test_novice_week4_ag <- t.test(novice_week4_ag$encoding_recall_similarity, mu = 0)
+t_test_novice_week4_pmc <- t.test(novice_week4_pmc$encoding_recall_similarity, mu = 0)
+
+
+# Print results
+print(t_test_novice_week2_mpfc)
+print(t_test_novice_week2_ag)
+print(t_test_novice_week2_pmc)
+print(t_test_novice_week4_mpfc)
+print(t_test_novice_week4_ag)
+print(t_test_novice_week4_pmc)
+
+```
+
+```{r}
+# Filter the data for each condition and region, and perform t-test
+novice_mpfc <- subject_averages_long %>% filter(region == 'mPFC')
+novice_ag <- subject_averages_long %>% filter(region == 'AG')
+novice_pmc <- subject_averages_long %>% filter(region == 'PMC')
+t_test_novice_ag_mpfc <- t.test(novice_mpfc$encoding_recall_similarity, novice_ag$encoding_recall_similarity, mu = 0, paired = TRUE)
+t_test_novice_ag_pmc <- t.test(novice_ag$encoding_recall_similarity,novice_pmc$encoding_recall_similarity, mu = 0, paired = TRUE)
+t_test_novice_mpfc_pmc <- t.test(novice_pmc$encoding_recall_similarity, novice_mpfc$encoding_recall_similarity, mu = 0, paired = TRUE)
+
+print(t_test_novice_ag_mpfc)
+print(t_test_novice_ag_pmc)
+print(t_test_novice_mpfc_pmc)
+
+```
+
+Can we look at encoding conjunctive representation and use that to predict subsequent memory?
+```{r}
+
+ret_correct <- glmer(correct ~ e_l_sim_ag + I(e_l_sim_ag^2) + e_i_sim_ag +I(e_i_sim_ag^2) + (1|sub), family = 'binomial', data = dataset_full)
+summary(ret_correct)
+
+ret_correct <- glmer(correct ~ e_l_sim_mpfc + I(e_l_sim_mpfc^2) + e_i_sim_mpfc +I(e_i_sim_mpfc^2) + (1|sub), family = 'binomial', data = dataset_full)
+summary(ret_correct)
+
+ret_correct <- glmer(correct ~ e_l_sim_pmc + I(e_l_sim_pmc^2) + e_i_sim_pmc +I(e_i_sim_pmc^2) + (1|sub), family = 'binomial', data = dataset_full)
+summary(ret_correct)
+
+
+ret_correct <- glmer(correct ~ e_r_sim_ag + (1|sub), family = 'binomial', data = dataset_full)
+summary(ret_correct)
+
+ret_correct <- glmer(correct ~ e_r_sim_mpfc + (1|sub), family = 'binomial', data = dataset_full)
+summary(ret_correct)
+
+ret_correct <- glmer(correct ~ e_r_sim_pmc + (1|sub), family = 'binomial', data = dataset_full)
+summary(ret_correct)
+
+
+
+```
+
+
+
+analysis with hippocampus data
+```{r}
+conj_session_anterior_hipp <- lmer(beta_e_residual_z_anterior_hipp~ time +speak_duration +(1|sub), data = novices_dataset)
+conj_session_posterior_hipp <- lmer(beta_e_residual_z_posterior_hipp ~ time+speak_duration +(1|sub), data = novices_dataset)
+conj_session_hippo <- lmer(beta_e_residual_z_hippo ~ time+speak_duration +(1|sub), data = novices_dataset)
+summary(conj_session_anterior_hipp)
+summary(conj_session_posterior_hipp)
+summary(conj_session_hippo)
+
+subject_averages_er_hipp <- dataset %>%
+  group_by(sub, condition) %>%
+  summarize(anterior_hipp = mean(beta_e_residual_z_anterior_hipp, na.rm = TRUE), 
+            mean_story_details = mean(story_details, na.rm = TRUE),
+            posterior_hipp = mean(beta_e_residual_z_posterior_hipp, na.rm=TRUE),
+            hippo = mean(beta_e_residual_z_hippo, na.rm = TRUE),
+            #hippocampus = mean(e_r_sim_hipp, na.rm = TRUE)
+            )
+
+session_averages_by_condition_hipp <- subject_averages_er_hipp %>%
+  group_by(condition) %>%
+  summarize(
+    n = n(),
+    anterior_hipp_mean = mean(anterior_hipp, na.rm = TRUE),
+    anterior_hipp_sd = sd(anterior_hipp, na.rm = TRUE),
+    posterior_hipp_mean = mean(posterior_hipp, na.rm=TRUE),
+    
+    # story_sd = sd(mean_story_details, na.rm = TRUE),
+    posterior_hipp_sd = sd(posterior_hipp, na.rm = TRUE),
+    hippo_mean = mean(hippo, na.rm = TRUE),
+    hippo_sd = sd(hippo, na.rm = TRUE),
+    #hippocampus_mean = mean(hippocampus, na.rm = TRUE),
+    #hippocampus_sd = sd(hippocampus, na.rm =TRUE),
+    # story_mean= mean(mean_story_details, na.rm = TRUE)
+  )%>%
+  mutate(anterior_hipp_se=anterior_hipp_sd/sqrt(n)) %>%
+  mutate(hippo_se = hippo_sd/sqrt(n)) %>%
+  mutate(posterior_hipp_se = posterior_hipp_sd/sqrt(n)) #%>%
+  #mutate(story_se = story_sd/sqrt(n))
+
+
+```
+
+```{r}
+session_averages_by_condition_hipp
+
+subject_averages_long_hipp <- subject_averages_er_hipp %>%
+  pivot_longer(cols = c(anterior_hipp, posterior_hipp, hippo),
+               names_to = 'region',
+               values_to = 'encoding_recall_similarity')
+
+
+session_averages_long_by_condition_hipp <- session_averages_by_condition_hipp %>%
+  pivot_longer(cols = -condition,
+               names_to = c("region", ".value"),
+               names_pattern = "(.*)_(.*)") %>%
+  drop_na() 
+
+subject_averages_long_hipp$region[subject_averages_long_hipp$region=='anterior_hipp'] <- 'anterior \n hippocampus'
+subject_averages_long_hipp$region[subject_averages_long_hipp$region=='posterior_hipp'] <- 'posterior \n hippocampus'
+subject_averages_long_hipp$region[subject_averages_long_hipp$region=='hippo'] <- 'hippocampus'
+
+session_averages_long_by_condition_hipp$region[session_averages_long_by_condition_hipp$region=='anterior_hipp'] <- 'anterior \n hippocampus'
+session_averages_long_by_condition_hipp$region[session_averages_long_by_condition_hipp$region=='posterior_hipp'] <- 'posterior \n hippocampus'
+session_averages_long_by_condition_hipp$region[session_averages_long_by_condition_hipp$region=='hippo'] <- 'hippocampus'
+
+session_averages_long_by_condition_hipp$region <- factor(session_averages_long_by_condition_hipp$region, levels =c('anterior \n hippocampus','posterior \n hippocampus','hippocampus'))
+subject_averages_long_hipp$region <- factor(subject_averages_long_hipp$region, levels =c('anterior \n hippocampus','posterior \n hippocampus','hippocampus'))
+
+
+
+# Create the plot
+ggplot() +
+  geom_bar(data = session_averages_long_by_condition_hipp, aes(x = condition, y = mean, fill = region, alpha = 0.8), stat = "identity", position = "dodge") +
+  scale_fill_manual(values=c("grey", 
+                             "grey", 
+                             "grey")) +
+  geom_errorbar(data = session_averages_long_by_condition_hipp, aes(x = condition, ymin = mean-se, ymax = mean+se, width = .5))+
+    geom_point(data = subject_averages_long_hipp %>% filter(region =='anterior \n hippocampus'), aes(x = condition, y = encoding_recall_similarity, group = sub), color = "black", alpha = 0.2) +  # Adjust alpha for transparency
+  geom_line(data = subject_averages_long_hipp %>% filter(region =='anterior \n hippocampus'), aes(x = condition, y = encoding_recall_similarity, group = sub), color = "black", alpha = 0.2) +  # Add lines to connect the same participant's points
+  geom_point(data = subject_averages_long_hipp %>% filter(region =='posterior \n hippocampus'), aes(x = condition, y = encoding_recall_similarity, group = sub), color = "black", alpha = 0.2) +  # Adjust alpha for transparency
+  geom_line(data = subject_averages_long_hipp %>% filter(region =='posterior \n hippocampus'), aes(x = condition, y = encoding_recall_similarity, group = sub), color = "black", alpha = 0.2) +  # Add lines to connect the same participant's points
+  geom_point(data = subject_averages_long_hipp %>% filter(region =='hippocampus'), aes(x = condition, y = encoding_recall_similarity, group = sub), color = "black", alpha = 0.2) +  # Adjust alpha for transparency
+  geom_line(data = subject_averages_long_hipp %>% filter(region =='hippocampus'), aes(x = condition, y = encoding_recall_similarity, group = sub), color = "black", alpha = 0.2) +  # Add lines to connect the same participant's points
+  
+  theme_minimal() + 
+    facet_wrap(~ region)+
+  # labs(x = "Session", y = "weight of encoding in predicting recall")
+  labs(x = 'session', y = 'β_encodingResidual') + graphtheme_small_text+ theme(legend.position="none", aspect.ratio = 1)
+ggsave('session_ersim_hipp.svg')
+
+
+```
+
+
+```{r}
+# Filter the data for each condition and region, and perform t-test
+novice_week2_posterior_hipp <- subject_averages_long %>% filter(condition == 'Week 2' & region == 'posterior_hipp')
+novice_week2_anterior_hipp <- subject_averages_long %>% filter(condition == 'Week 2' & region == 'anterior_hipp')
+novice_week2_hippo <- subject_averages_long %>% filter(condition == 'Week 2' & region == 'hippo')
+novice_week4_posterior_hipp <- subject_averages_long %>% filter(condition == 'Week 4' & region == 'posterior_hipp')
+novice_week4_anterior_hipp <- subject_averages_long %>% filter(condition == 'Week 4' & region == 'anterior_hipp')
+novice_week4_hippo <- subject_averages_long %>% filter(condition == 'Week 4' & region == 'hippo')
+
+# one sampel t-test to show significant encoding recall partial correlation
+t_test_novice_week2_posterior_hipp <- t.test(novice_week2_posterior_hipp$encoding_recall_similarity, mu = 0)
+t_test_novice_week2_anterior_hipp <- t.test(novice_week2_anterior_hipp$encoding_recall_similarity, mu = 0)
+t_test_novice_week2_hippo <- t.test(novice_week2_hippo$encoding_recall_similarity, mu = 0)
+t_test_novice_week4_posterior_hipp <- t.test(novice_week4_posterior_hipp$encoding_recall_similarity, mu = 0)
+t_test_novice_week4_anterior_hipp <- t.test(novice_week4_anterior_hipp$encoding_recall_similarity, mu = 0)
+t_test_novice_week4_hippo <- t.test(novice_week4_hippo$encoding_recall_similarity, mu = 0)
+
+
+# Print results
+print(t_test_novice_week2_posterior_hipp)
+print(t_test_novice_week2_anterior_hipp)
+print(t_test_novice_week2_hippo)
+print(t_test_novice_week4_posterior_hipp)
+print(t_test_novice_week4_anterior_hipp)
+print(t_test_novice_week4_hippo)
+
+```
+
+
+```{r}
+
+
+ggplot()+
+  geom_line(data = dataset, aes(x = beta_e_residual_z_anterior_hipp, 
+                                y = story_details, 
+                                group = sub), size=.4,color = 'black',
+                          stat='smooth',alpha = 0.3,
+                          method = 'lm')+
+  geom_line(data = dataset, aes(x =beta_e_residual_z_anterior_hipp, 
+                                y = story_details),size=1.2,color = 'black',
+                          stat = 'smooth', method = 'lm')+
+  theme_minimal() + graphtheme+theme(aspect.ratio = 1) +
+  labs(x = "anterior \n hippocampus", y = "story deviation")
+ggsave('anterior_hipp_ersim_storysim.svg')
+
+
+
+ggplot()+
+  geom_line(data = dataset, aes(x = beta_e_residual_z_posterior_hipp, 
+                                y = story_details, 
+                                group = sub), size=.4,color = 'black',
+            stat='smooth',alpha = 0.3,
+            method = 'lm')+
+  geom_line(data = dataset, aes(x =beta_e_residual_z_posterior_hipp, 
+                                y = story_details),size=1.2,color = 'black',
+            stat = 'smooth', method = 'lm')+
+  theme_minimal() + graphtheme+theme(aspect.ratio = 1) +
+  labs(x = "posterior \n hippocampus", y = "story deviation")
+ggsave('posterior_hipp_ersim_storysim.svg')
+
+
+
+ggplot()+
+  geom_line(data = dataset, aes(x = beta_e_residual_z_hippo, 
+                                y = story_details, 
+                                group = sub), size=.4,color = 'black',
+            stat='smooth',alpha = 0.3,
+            method = 'lm')+
+  geom_line(data = dataset, aes(x =beta_e_residual_z_hippo, 
+                                y = story_details),size=1.2,color = 'black',
+            stat = 'smooth', method = 'lm')+
+  theme_minimal() + graphtheme+theme(aspect.ratio = 1) +
+  labs(x = "hippocampus", y = "story deviation") 
+ggsave('hippo_ersim_storysim.svg')
+
+
+```
