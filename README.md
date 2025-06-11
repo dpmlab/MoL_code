@@ -1,5 +1,6 @@
 # MoL_code
 Code for https://www.biorxiv.org/content/10.1101/2024.12.19.629352v2
+The Neuroimaging data can be found in doi:10.18112/openneuro.ds005894.v1.0.0
 
 
 Updated sheets: folder with excel sheets with cleaned loci description and encoding and retrieval, what is spoken and their respective timing. Used for creating design matrices in GLM and labeling representations with corresponding locus/item/combined representations. Spoken recall is used for semantic analyses. It also has a sheet recording the performance at screening.
