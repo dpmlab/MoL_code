@@ -7,7 +7,7 @@ Updated sheets: folder with excel sheets with cleaned loci description and encod
 
 performance_scoring.ipynb calculates and visualize participants’ performance scores
 
-Run fMRI prep on the BIDS files.
+Run fMRI prep on the BIDS files. (Using runSingularity.sh - need to have Singularity container for the right version of fMRIprep)
 
 After fMRI prep, run post_fmriprep.ipynb to remove nuisance regressors, get surface data + hippocampus data (with both individual masks and group masks). The output is saved in the “preprocessed” folder. Subsequent analyses use the .h5 files generated in this process.
 
